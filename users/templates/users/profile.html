@@ -1,0 +1,107 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="ml-4" style="width: 650px">
+        <div class="media">
+            <img class="rounded-circle article-img" src="{# { MEDIA_URL } #} {{ user.profile.image.url }}" height="72" alt="...">
+            <div class="media-body">
+                <h2 class="account-heading ml-3">{{ user.username }}</h2>
+                <p class="text-secondary ml-3">{{ user.email }}</p>
+            </div>
+        </div>
+        <!-- Form -->
+        <h5 class="title mt-2">{% trans 'Account Information' %}</h5>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {% if user_form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in user_form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in user_form.visible_fields %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+
+                        {% if form.is_bound %}
+                            {% if field.errors %}
+                                {% render_field field class="form-control is-invalid" %}
+                                {% for error in field.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field field class="form-control is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field field class="form-control" %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                {% if profile_form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in profile_form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    {{ profile_form.birth_date.label_tag }}
+
+                    {% if form.is_bound %}
+                        {% if profile_form.birth_date.errors %}
+                            {% render_field profile_form.birth_date class="form-control is-invalid" %}
+                            {% for error in profile_form.birth_date.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field profile_form.birth_date class="form-control is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field profile_form.birth_date class="form-control" %}
+                    {% endif %}
+                </div>
+                <label for="id_image">{% trans 'Profile picture:' %}</label>
+                <p><input type="file" style="border: none" name="image" accept="image/*" class="form-control bg-light" id="id_image" ></p>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">{% trans 'Update' %}</button>
+                </div>
+                {% if approved > 0 %}
+                    <a href="{% url 'blog:user-posts' user.username %}">{% trans 'Active posts' %} ({{ approved }})</a>
+                {% else %}
+                    <a class="text-primary">{% trans 'You have no active posts' %}</a>
+                {% endif %}
+                {% if pending > 0 %}
+                    <br>
+                    <a class="text-info" href="{% url 'blog:user-posts' user.username %}?status=pending">
+                        {% trans 'Posts under review' %} ({{ pending }})
+                    </a>
+                {% endif %}
+                {% if declined > 0 %}
+                    <br>
+                    <a class="text-warning mb-3" href="{% url 'blog:user-posts' user.username %}?status=declined">
+                        {% trans 'Posts declined to publication' %} ({{ declined }})
+                    </a>
+                {% endif %}
+                <p></p>
+                <div class="border-top pt-3 d-flex">
+                    <!-- Delete user -->
+                    <a class="text-danger my-2 my-sm-0"
+                       href="{% url 'user:user-delete' user.pk %}">{% trans 'Delete Account' %}</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

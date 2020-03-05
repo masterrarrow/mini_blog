@@ -1,0 +1,527 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-22 17:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: blog/models.py:34
+msgid "Pending"
+msgstr "На перевірці"
+
+#: blog/models.py:35
+msgid "Approved"
+msgstr "Схвалений"
+
+#: blog/models.py:36 blog/templates/blog/home.html:24
+#: blog/templates/blog/post_detail.html:21
+msgid "Declined"
+msgstr "Заборонений"
+
+#: blog/models.py:39
+msgid "Title"
+msgstr "Назва"
+
+#: blog/models.py:40 blog/models.py:62
+msgid "Context"
+msgstr "Зміст"
+
+#: blog/models.py:41 blog/models.py:65
+msgid "Date posted"
+msgstr "Дата публікації"
+
+#: blog/models.py:42
+msgid "Status"
+msgstr "Статус"
+
+#: blog/models.py:43 blog/models.py:63
+msgid "Author"
+msgstr "Автор"
+
+#: blog/models.py:46 blog/models.py:64
+msgid "Post"
+msgstr "Публікація"
+
+#: blog/models.py:47
+msgid "Posts"
+msgstr "Публікації"
+
+#: blog/models.py:71
+msgid "Comment"
+msgstr "Коментарій"
+
+#: blog/models.py:72
+msgid "Comments"
+msgstr "Коментарії"
+
+#: blog/signals.py:36
+msgid "Your post has been "
+msgstr "Ваша публікація була "
+
+#: blog/signals.py:36
+msgid " to publication"
+msgstr " до публікації"
+
+#: blog/signals.py:74
+msgid "New Comment on your post"
+msgstr "Новий коментарій на Вашу публікацію"
+
+#: blog/templates/blog/base.html:41
+msgid "Home"
+msgstr "Додому"
+
+#: blog/templates/blog/base.html:45 blog/templates/blog/base.html:47
+msgid "Search"
+msgstr "Пошук"
+
+#: blog/templates/blog/base.html:54 users/models.py:53
+msgid "Profile"
+msgstr "Профіль"
+
+#: blog/templates/blog/base.html:56
+msgid "Sign in"
+msgstr "Вхід"
+
+#: blog/templates/blog/base.html:65 blog/templates/blog/new_post.html:15
+msgid "New Post"
+msgstr "Новий пост"
+
+#: blog/templates/blog/base.html:67
+msgid "Sign out"
+msgstr "Вихід"
+
+#: blog/templates/blog/base.html:69
+msgid "Sign up"
+msgstr "Реїстрація"
+
+#: blog/templates/blog/comment_confirm_delete.html:10
+msgid "Delete Comment"
+msgstr "Видалити"
+
+#: blog/templates/blog/comment_confirm_delete.html:11
+msgid "Are you sure you want to delete this comment?"
+msgstr "Ви впевнені, що бажаете видалити цей коментарій?"
+
+#: blog/templates/blog/comment_confirm_delete.html:14
+#: blog/templates/blog/post_confirm_delete.html:14
+#: users/templates/users/user_confirm_delete.html:14
+msgid "Yes, Delete"
+msgstr "Так, Видалити"
+
+#: blog/templates/blog/comment_confirm_delete.html:15
+#: blog/templates/blog/new_post.html:68 blog/templates/blog/new_post.html:70
+#: blog/templates/blog/post_confirm_delete.html:15
+#: blog/templates/blog/post_detail.html:101
+#: users/templates/users/user_confirm_delete.html:15
+msgid "Cancel"
+msgstr "Відміна"
+
+#: blog/templates/blog/comment_notification_email.html:3
+#: blog/templates/blog/post_status_notification_email.html:3
+#: users/templates/users/activation_email.html:3
+#: users/templates/users/password_reset_email.html:3
+msgid "Dear"
+msgstr "Шановний"
+
+#: blog/templates/blog/comment_notification_email.html:3
+msgid "reacted on your post on the site"
+msgstr "відреагував на Вашу публіуацію на сайті"
+
+#: blog/templates/blog/comment_notification_email.html:4
+#: blog/templates/blog/post_status_notification_email.html:4
+msgid "Post:"
+msgstr "Публікація:"
+
+#: blog/templates/blog/error403.html:7
+msgid "Invalid security token"
+msgstr "Невірний токен безпеки"
+
+#: blog/templates/blog/error403.html:30
+msgid "The page could not be displayed because your security token has been expired."
+msgstr "Сторінка не може бути відображена так як зтік строк дії Вашого токенк безпеки"
+
+#: blog/templates/blog/error403.html:33
+msgid "Make sure the address is correct and try again"
+msgstr "Впевніться, що адреса вірна та спробуйте ще раз"
+
+#: blog/templates/blog/error404.html:7
+msgid "Page Not Found"
+msgstr "Сторінка не знайдена"
+
+#: blog/templates/blog/error404.html:30
+msgid "The page could not be found or you don't have permission to view it."
+msgstr "Сторінка не може бути знайдена або Ви немаєте необхідного дозволу для її "
+"перегляду."
+
+#: blog/templates/blog/error404.html:33
+msgid "The resource that you are attempting to access does not exist or you don't "
+"have the necessary permissions to view it."
+msgstr "Ресурс до якого Ви намагаєтесь отримати доступ не існує фбо у Вас немає "
+"необхідного дозволу для його перегляду."
+
+#: blog/templates/blog/error404.html:34
+msgid "Make sure the address is correct and that the page hasn't moved."
+msgstr "Впевніться, що адреса вірна та сторінка не була переміщена."
+
+#: blog/templates/blog/error500.html:7
+msgid "Internal server error"
+msgstr "Внутрішня помилка сервера"
+
+#: blog/templates/blog/error500.html:30
+msgid "Internal server error occurs."
+msgstr "Внутрішня помилка сервера"
+
+#: blog/templates/blog/error500.html:33
+msgid "Make sure the address is correct and that the page hasn't moved and try "
+"again."
+msgstr "Впевніться, що адреса вірна та сторінка не була переміщена та сробуйте ще "
+"раз."
+
+#: blog/templates/blog/home.html:7
+msgid "Posts by"
+msgstr "Публікації"
+
+#: blog/templates/blog/home.html:9
+msgid "Your posts"
+msgstr "Ваші публікації"
+
+#: blog/templates/blog/home.html:21 blog/templates/blog/post_detail.html:18
+msgid "Under review"
+msgstr "На перевірці"
+
+#: blog/templates/blog/home.html:37
+msgid "First"
+msgstr "Перша"
+
+#: blog/templates/blog/home.html:38
+msgid "Previous"
+msgstr "Попередня"
+
+#: blog/templates/blog/home.html:51
+msgid "Next"
+msgstr "Наступна"
+
+#: blog/templates/blog/home.html:52
+msgid "Last"
+msgstr "Остання"
+
+#: blog/templates/blog/new_post.html:13
+msgid "Edit Post"
+msgstr "Редагувати"
+
+#: blog/templates/blog/new_post.html:27
+msgid "Title:"
+msgstr "Назва:"
+
+#: blog/templates/blog/new_post.html:46
+msgid "Content:"
+msgstr "Зміст:"
+
+#: blog/templates/blog/new_post.html:66
+#: blog/templates/blog/post_detail.html:102
+msgid "Save"
+msgstr "Зберегти"
+
+#: blog/templates/blog/post_confirm_delete.html:10
+msgid "Delete Post"
+msgstr "Видалити"
+
+#: blog/templates/blog/post_confirm_delete.html:11
+msgid "Are you sure you want to delete the post"
+msgstr "Ви впевнені, що бажаете видалити публікацію"
+
+#: blog/templates/blog/post_detail.html:27
+msgid "Post status:"
+msgstr "Статус посту"
+
+#: blog/templates/blog/post_detail.html:36
+#: blog/templates/blog/post_detail.html:79
+#: users/templates/users/profile.html:81
+msgid "Update"
+msgstr "Оновити"
+
+#: blog/templates/blog/post_detail.html:37
+#: blog/templates/blog/post_detail.html:80
+msgid "Delete"
+msgstr "Видалити"
+
+#: blog/templates/blog/post_detail.html:55
+msgid "New comment"
+msgstr "Новий коментарій"
+
+#: blog/templates/blog/post_detail.html:60
+msgid "Add"
+msgstr "Додати"
+
+#: blog/templates/blog/post_detail.html:66
+msgid "+ Add Comment"
+msgstr "+ Додати коментарій"
+
+#: blog/templates/blog/post_status_notification_email.html:3
+msgid "your post has been"
+msgstr "Ваша публікація була"
+
+#: blog/templates/blog/post_status_notification_email.html:3
+msgid "to publication on the site"
+msgstr "до публікації на сайті"
+
+#: mini_blog/settings.py:223
+msgid "English"
+msgstr "Англійська"
+
+#: mini_blog/settings.py:224
+msgid "Russian"
+msgstr "Російська"
+
+#: mini_blog/settings.py:225
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: mini_blog/urls.py:29
+msgid "Admin panel"
+msgstr "Панель адміністратора"
+
+#: mini_blog/urls.py:30
+msgid "Mini Blog Administrator"
+msgstr "Mini Blog Адміністратор"
+
+#: users/forms.py:17
+msgid "First name"
+msgstr "Ім'я"
+
+#: users/forms.py:18
+msgid "Last name"
+msgstr "Прізвище"
+
+#: users/forms.py:19 users/forms.py:35 users/forms.py:47
+msgid "Email"
+msgstr "Електронна пошта"
+
+#: users/forms.py:20 users/forms.py:58 users/models.py:42
+msgid "Birth date"
+msgstr "Дата нарождення"
+
+#: users/forms.py:36
+msgid "Password"
+msgstr "Пароль"
+
+#: users/models.py:13
+msgid "Name"
+msgstr "Назва"
+
+#: users/models.py:14
+msgid "Pre moderation"
+msgstr "Пре модерація"
+
+#: users/models.py:20
+msgid "User Group"
+msgstr "Група Корістувачів"
+
+#: users/models.py:21
+msgid "User Groups"
+msgstr "Групи Користувачів"
+
+#: users/models.py:41
+msgid "User"
+msgstr "Користувач"
+
+#: users/models.py:43
+msgid "Email confirmed"
+msgstr "Пошта підтверджена"
+
+#: users/models.py:44
+msgid "User group"
+msgstr "Група користувачів"
+
+#: users/models.py:47
+msgid "Profile Picture"
+msgstr "Фото профілю"
+
+#: users/models.py:54
+msgid "Profiles"
+msgstr "Профіль"
+
+#: users/templates/users/activation_email.html:3
+msgid "you received this email because you registered on the site"
+msgstr "Ви отримали данне повідомлення так як зареєструвались на сайті"
+
+#: users/templates/users/activation_email.html:4
+msgid "Please click on the link below to confirm your registration:"
+msgstr "Будьласка перейдіть за посиланням нижче для підтвердження Вашої реїстрації:"
+
+#: users/templates/users/activation_email.html:4
+msgid "Confirm Registration"
+msgstr "Підтвердити Реїстрацію"
+
+#: users/templates/users/login.html:18 users/templates/users/login.html:54
+#: users/templates/users/password_reset_confirm.html:55
+#: users/templates/users/register.html:53
+msgid "Sign In"
+msgstr "Ввійти"
+
+#: users/templates/users/login.html:58
+msgid "Sign in with Google"
+msgstr "Вхід через Google"
+
+#: users/templates/users/login.html:63
+msgid "Need An Account?"
+msgstr "Потрібен Аккаунт?"
+
+#: users/templates/users/login.html:63
+msgid "Sign Up Now"
+msgstr "Реїстрація"
+
+#: users/templates/users/login.html:66
+msgid "Forgot password?"
+msgstr "Забули пароль?"
+
+#: users/templates/users/login.html:66
+#: users/templates/users/password_reset_confirm.html:16
+#: users/templates/users/password_reset_confirm.html:48
+#: users/templates/users/password_reset_confirm.html:53
+#: users/templates/users/password_reset_confirm.html:56
+#: users/templates/users/password_reset_email.html:4
+msgid "Reset Password"
+msgstr "Відновити"
+
+#: users/templates/users/logout.html:7
+msgid "You have been logged out"
+msgstr "Ви покинули сайт"
+
+#: users/templates/users/logout.html:10
+msgid "Log In Again"
+msgstr "Ввійти Знову"
+
+#: users/templates/users/password_reset_complete.html:7
+msgid "Your password has been set."
+msgstr "Ваш пароль був змінений"
+
+#: users/templates/users/password_reset_complete.html:9
+msgid "Sign In Here"
+msgstr "Ввійти"
+
+#: users/templates/users/password_reset_confirm.html:54
+msgid "Token is invalid or expired"
+msgstr "Токен невірний або срок його дії сплив"
+
+#: users/templates/users/password_reset_email.html:3
+msgid "you received this email because you requested a password reset on the site"
+msgstr "Ви отримали данне повідомлення так як запросили відновлення пароля на сайті"
+
+#: users/templates/users/password_reset_email.html:4
+msgid "To reset your password please follow the link:"
+msgstr "Щоб відновити Ваш пароль перейдіть за посиланням:"
+
+#: users/templates/users/profile.html:17
+msgid "Account Information"
+msgstr "Акаунт"
+
+#: users/templates/users/profile.html:76
+msgid "Profile picture:"
+msgstr "Фото профілю:"
+
+#: users/templates/users/profile.html:84
+msgid "Active posts"
+msgstr "Активні публікації"
+
+#: users/templates/users/profile.html:86
+msgid "You have no active posts"
+msgstr "У Вас немає активних публікацій"
+
+#: users/templates/users/profile.html:91
+msgid "Posts under review"
+msgstr "Публікації на перевірці"
+
+#: users/templates/users/profile.html:97
+msgid "Posts declined to publication"
+msgstr "Публікація відхилена до публікації"
+
+#: users/templates/users/profile.html:104
+#: users/templates/users/user_confirm_delete.html:10
+msgid "Delete Account"
+msgstr "Видалити акаунт"
+
+#: users/templates/users/register.html:16
+#: users/templates/users/register.html:48
+msgid "Sign Up"
+msgstr "Зареєструватись"
+
+#: users/templates/users/register.html:53
+msgid "Already Have An Account? "
+msgstr "Вже є акаунт? "
+
+#: users/templates/users/request_password_reset.html:13
+msgid "Request Password Reset"
+msgstr "Запросити відновлення паролю"
+
+#: users/templates/users/request_password_reset.html:14
+msgid "Enter your email:"
+msgstr "Введіть Вашу електронну пошту:"
+
+#: users/templates/users/request_password_reset.html:19
+msgid "Confirm"
+msgstr "Підтвердити"
+
+#: users/templates/users/user_confirm_delete.html:11
+msgid "Are you sure you want to delete your account?"
+msgstr "Ви впевнені, що бажаєти відалити Ваш акаунт?"
+
+#: users/views.py:41
+msgid "Your email has been confirmed. Now you can sign in"
+msgstr "Ваша електронна пошта була підтверджена. Тепер Ви можете ввійти"
+
+#: users/views.py:43
+msgid "Wrong activation data. Your account has not been activated"
+msgstr "Помилка реъстрацыйних данних. Ваш акаунт не був активований"
+
+#: users/views.py:69
+msgid "User with this credential already exists"
+msgstr "Данний користувач вже існує"
+
+#: users/views.py:91
+msgid "Please Activate Your Account"
+msgstr "Будласка активуйте Ваш акаунт"
+
+#: users/views.py:93
+msgid "Instructions for activating your account has been emailed to you"
+msgstr "Інструкції по активації Вашого акаунта були вислані Вам на пошту"
+
+#: users/views.py:125 users/views.py:128
+msgid "Wrong user credentials or your email has not been confirmed"
+msgstr "Помилка реїстраційних данних або Ваша електронна пошта не була підтверджена"
+
+#: users/views.py:131
+msgid "Successfully signed in as "
+msgstr "Ви успішно ввійшли як "
+
+#: users/views.py:187
+msgid "You account has been updated"
+msgstr "Ваш профіль був оновлений"
+
+#: users/views.py:217
+msgid "You don't have the right permissions to do that"
+msgstr "У Вас немає необхідних на це повноважень"
+
+#: users/views.py:238
+msgid "User with this email does not exist"
+msgstr "Користувача з цією електронною поштою не існує"
+
+#: users/views.py:250
+msgid "Password reset confirmation"
+msgstr "Підтвердження відновлення паролю"
+
+#: users/views.py:252
+msgid "Instructions to reset your password has been emailed to you"
+msgstr "Інструкції по відновленню паролю були вислані Вам на електронну пошту"

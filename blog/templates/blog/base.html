@@ -1,0 +1,130 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://cdn2.iconfinder.com/data/icons/social-icons-color/512/blogger-512.png">
+
+    <title>Mini Blog</title>
+
+    <script type="text/javascript">
+        // Hide flash message after 3 sec
+        window.setTimeout("document.getElementById('message').style.display='none';", 3000);
+
+        function open_url(url){
+            let current_url = window.location.toString();
+            current_url = current_url.split("/");
+             window.location.href = current_url[0]+url;
+        }
+
+        // For 403, 404 and 500 error pages
+        var seconds = 6;
+        var url="{% url 'home' %}";
+
+        function redirect(){
+            if (seconds <=0){
+                // Redirect to a home page
+                window.location = url;
+            } else {
+                seconds--;
+                document.getElementById("pageInfo").innerHTML="Redirecting to Home Page after "+seconds+" seconds.";
+                setTimeout("redirect()", 1000);
+            }
+        }
+    </script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #e3f2fd;">
+        <div class="container">
+            <!-- Home -->
+            <a class="navbar-brand mr-2" style="color: orange" href="{% url 'home' %}">
+                <img class="rounded-circle article-img" src="https://cdn2.iconfinder.com/data/icons/social-icons-color/512/blogger-512.png" height="27" alt="...">
+                Mini Blog
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <!-- Navbar Left Side -->
+                <div class="navbar-nav mt-1 mr-auto">
+                    <a class="nav-item nav-link" href="{% url 'home' %}">{% trans 'Home' %}</a>
+                </div>
+                <!-- Search -->
+                <form class="form-inline mr-4">
+                    <div class="input-group">
+                        <input class="form-control" name="q" type="search" placeholder="{% trans 'Search' %}"
+                               style="width: 260px" aria-label="Search" value="{{ request.GET.q }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="submit">
+                                <img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698838-icon-111-search-512.png"
+                                width="22" alt=">">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav">
+                    <!-- Check that the user is logged in -->
+                    {% if user.is_authenticated %}
+                        <div class="form-row mt-1">
+                            <img class="rounded-circle article-img" src="{{ user.profile.image.url }}" height="37" width="37" alt="...">
+                            <a class="nav-item nav-link mr-1" href="{% url 'user:profile' %}">{% trans 'Profile' %}</a>
+                        </div>
+                    {% else %}
+                        <a class="nav-item nav-link text-muted mt-1 mr-1" href="{% url 'user:sign-in' %}">{% trans 'Sign in' %}</a>
+                    {% endif %}
+                </div>
+                <!-- Dropdown menu -->
+                <div class="nav-item dropdown mt-1">
+                    <button style="border: none" class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% if user.is_authenticated %}
+                            <a class="dropdown-item text-muted" href="{% url 'blog:new-post' %}">{% trans 'New Post' %}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-muted" href="{% url 'user:logout' %}">{% trans 'Sign out' %}</a>
+                        {% else %}
+                            <a class="dropdown-item text-muted" href="{% url 'user:sign-up' %}">{% trans 'Sign up' %}</a>
+                        {% endif %}
+                        <div class="dropdown-divider"></div>
+                        <!-- Change language -->
+                        <form action="{% url 'set_language' %}" method="POST">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+                            <select class="form-control text-muted" name="language">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option onclick="this.form.submit()" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main role="main" class="container">
+        <!-- Message -->
+        {% if messages %}
+            {% for message in messages %}
+                <div id="message" class="alert alert-{{ message.tags }}">{{ message|safe }}</div>
+            {% endfor %}
+        {% endif %}
+        <!-- Content -->
+        {% block content %}{% endblock %}
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

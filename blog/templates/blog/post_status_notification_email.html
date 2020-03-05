@@ -1,0 +1,5 @@
+{% load i18n %}
+{% autoescape off %}
+    <p>{% trans 'Dear' %} {{ name }}, {% trans 'your post has been' %} {{ post.status }} {% trans 'to publication on the site' %} <a href="http://{{ domain }}">Mini Blog.</a></p>
+    {% trans 'Post:' %} <a href="http://{{ link }}">{{ post.title }}.</a>
+{% endautoescape %}

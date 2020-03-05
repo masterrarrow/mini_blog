@@ -1,0 +1,75 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+	<div class="col-md-10 ml-4">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {% if request.resolver_match.kwargs.slug %}
+                    <legend class="border-bottom mb-4" style="font-weight: bold">{% trans 'Edit Post' %}</legend>
+                {% else %}
+                    <legend class="border-bottom mb-4" style="font-weight: bold">{% trans 'New Post' %}</legend>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label>{% trans 'Title:' %}</label>
+
+                    {% if form.is_bound %}
+                        {% if form.title.errors %}
+                            {% render_field form.title class="form-control is-invalid" %}
+                            {% for error in form.title.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.title class="form-control is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.title class="form-control" %}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans 'Content:' %}</label>
+
+                    {% if form.is_bound %}
+                        {% if form.content.errors %}
+                            {% render_field form.content class="form-control is-invalid" %}
+                            {% for error in form.content.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.content class="form-control is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.content class="form-control" %}
+                    {% endif %}
+                </div>
+                {{ form.media }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">{% trans 'Save' %}</button>
+                {% if request.resolver_match.kwargs.slug %}
+                    <a class="btn btn-outline-secondary btn-small ml-2 mt-1 mb-1" href="{% url 'blog:post-detail' request.resolver_match.kwargs.slug %}">{% trans 'Cancel' %}</a>
+                {% else %}
+                    <a class="btn btn-outline-secondary btn-small ml-2 mt-1 mb-1" href="{% url 'home' %}">{% trans 'Cancel' %}</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,109 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+	<article class="media content-section">
+  		<div class="media-body border-bottom pt-2">
+    		<div class="article-metadata">
+      			<div class="article-metadata">
+                    <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" height="52" alt="...">
+                    <a class="mr-2" href="{% url 'blog:user-posts' post.author.username %}">{{ post.author }}</a>
+                    <a href="{% url 'blog:date-posts' post.date_posted %}">
+                        <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                    </a>
+                    {% if post.status == 'pending' %}
+                        <small class="ml-2 text-danger">{% trans 'Under review' %}</small>
+                    {% endif %}
+                    {% if post.status == 'declined' %}
+                        <small class="ml-2 text-danger">{% trans 'Declined' %}</small>
+                    {% endif %}
+                    {% if request.user.is_staff %}
+                        <form class="form-inline mb-3" action="{% url 'blog:post-detail' request.resolver_match.kwargs.slug %}" method="POST" role="form">
+                            {% csrf_token %}
+                            <!-- Change post status (only for admin users) -->
+                            <label class="text-muted mt-3 mr-2"> {% trans 'Post status:' %}</label>
+                            <fieldset class="form-group mt-3 mr-2">
+                                {% render_field form.status class="form-control text-muted" onchange="this.form.submit()" %}
+                            </fieldset>
+                        </form>
+                    {% endif %}
+    			</div>
+				{% if post.author == user or request.user.is_staff %}
+					<div>
+						<a class="text-secondary mt-1 mb-1"
+                           href="{% url 'blog:post-update' request.resolver_match.kwargs.slug %}">{% trans 'Update' %}</a>
+						<a class="text-danger ml-3 mt-1"
+                           href="{% url 'blog:post-delete' request.resolver_match.kwargs.slug %}">{% trans 'Delete' %}</a>
+					</div>
+				{% endif %}
+    		</div>
+    		<h2 class="article-title mt-2">{{ post.title }}</h2>
+    		<p class="article-content">{{ post.content|safe }}</p>
+        </div>
+    </article>
+    <div class="media-body">
+        {% if not comment_form.id.value %}
+        <div class="collapse multi-collapse" id="collapseComment">
+            <div class="card card-body bg-light" style="border: none">
+                <!-- Form for creating a new comment -->
+                <form class="form-inline" method="POST" role="form" action="{% url 'blog:new-comment' request.resolver_match.kwargs.slug %}">
+                    <div class="content-section">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <h5><label for="comment">{% trans 'New comment' %}</label></h5>
+                            {% render_field comment_form.content class="form-control" %}
+                            {{ comment_form.media }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info ml-2 mt-2" type="submit">{% trans 'Add' %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <a class="btn btn-link" data-toggle="collapse" href="#collapseComment" role="button" aria-expanded="false" aria-controls="collapseComment">{% trans '+ Add Comment' %}</a>
+        {% endif %}
+        {% for comment in comments %}
+            <div class="border-bottom pt-2 d-flex">
+                <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}" height="34" alt="...">
+                <div class="media-body mt-2">
+                    <a class="mr-2" href="{% url 'blog:user-posts' comment.author.username %}">{{ comment.author }}</a>
+                    <small class="text-muted">{{ comment.date_posted|date:"F d, Y" }}</small>
+                    <!-- Buttons: Edit and Delete comment -->
+                    {% if not comment_form.id.value %}
+                        {% if comment.author == user or request.user.is_staff %}
+                            <form class="inline-form" method="POST" action="{% url 'blog:comment-delete' comment.id %}">
+                                {% csrf_token %}
+                                <a href="{% url 'blog:post-detail' request.resolver_match.kwargs.slug %}?comment={{ comment.id }}" class="text-muted mt-1">{% trans 'Update' %}</a>
+                                <a href="{% url 'blog:comment-delete' comment.pk %}" class="text-danger ml-2 mt-1" >{% trans 'Delete' %}</a>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if comment.id == comment_form.id.value %}
+                        <!-- Form for editing an existing comment -->
+                        <form class="form-inline" method="POST" role="form" action="{% url 'blog:new-comment' request.resolver_match.kwargs.slug %}">
+                            <div class="content-section mt-2 mb-3">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    {% render_field comment_form.id type="hidden" %}
+                                    {% render_field comment_form.content class="form-control" %}
+                                    {{ comment_form.media }}
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-primary mt-3" type="submit">{% trans 'Save' %}</button>
+                                    <a href="{% url 'blog:post-detail' request.resolver_match.kwargs.slug %}" class="btn btn-outline-info mt-3 ml-3">{% trans 'Cancel' %}</a>
+                                </div>
+                            </div>
+                        </form>
+                    {% else %}
+                        <p class="article-content">{{ comment.content|safe }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

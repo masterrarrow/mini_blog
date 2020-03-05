@@ -1,0 +1,73 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-7 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-3" style="font-weight: bold">{% trans 'Sign In' %}</legend>
+
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            {% for field in form.visible_fields %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+
+                                    {% if form.is_bound %}
+                                        {% if field.errors %}
+                                            {% render_field field class="form-control is-invalid" %}
+                                            {% for error in field.errors %}
+                                                <div class="invalid-feedback">
+                                                    {{ error }}
+                                                </div>
+                                            {% endfor %}
+                                        {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% render_field field class="form-control" %}
+                                    {% endif %}
+
+                                    {% if field.help_text %}
+                                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">{% trans 'Sign In' %}</button>
+                        </div>
+                        <a class="btn btn-social btn-google" href="{% provider_login_url "google" %}">
+                            <img class="google-icon" width="30" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="..."/>
+                            {% trans 'Sign in with Google' %}
+                        </a>
+                    </form>
+                    <div class="border-top pt-2">
+                        <small class="text-muted ml-5">
+                            {% trans 'Need An Account?' %} <a class="mr-5" href="{% url 'user:sign-up' %}">{% trans 'Sign Up Now' %}</a>
+                        </small>
+                        <small class="text-muted ml-5">
+                            {% trans 'Forgot password?' %} <a class="ml-2" href="{% url 'user:password-reset' %}">{% trans 'Reset Password' %}</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

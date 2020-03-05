@@ -1,0 +1,5 @@
+{% load i18n %}
+{% autoescape off %}
+    <p>{% trans 'Dear' %} {{ name }}, {{ comment_author }} {% trans 'reacted on your post on the site' %} <a href="http://{{ domain }}">Mini Blog.</a></p>
+    {% trans 'Post:' %} <a href="http://{{ link }}">{{ post.title }}.</a>
+{% endautoescape %}

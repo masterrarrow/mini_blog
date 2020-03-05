@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <body onload="redirect()">
+        <main role="main" class="text-center mt-5">
+            <h1 style="font: normal normal 120px Georgia, Times New Roman, serif; color: #d90202; padding: 0 0 5px 0; margin: 0 0 5px 0; text-align: center;">404</h1>
+            <h3 class="mt-3">{% trans "The page could not be found or you don't have permission to view it." %}</h3>
+        </main>
+        <div class="border-top pt-2 text-center mt-4">
+            <small>{% trans "The resource that you are attempting to access does not exist or you don't have the necessary permissions to view it." %}</small>
+            <p><small>{% trans "Make sure the address is correct and that the page hasn't moved." %}</small></p>
+            <small id="pageInfo"></small>
+        </div>
+
+    </body>
+{% endblock %}

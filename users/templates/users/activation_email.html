@@ -1,0 +1,5 @@
+{% load i18n %}
+{% autoescape off %}
+    <p>{% trans 'Dear' %} {{ user }}, {% trans 'you received this email because you registered on the site' %} <a href="http://{{ domain }}">Mini Blog.</a></p>
+    {% trans 'Please click on the link below to confirm your registration:' %} <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">{% trans 'Confirm Registration' %}</a>
+{% endautoescape %}

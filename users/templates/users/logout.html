@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="col-md-12">
+        <h2 style="font-weight: bold">{% trans 'You have been logged out' %}</h2>
+        <div class="border-top col-md-12 pt-3">
+            <h6 class="text-muted">
+                <a href="{% url 'user:sign-in' %}">{% trans 'Log In Again' %}</a>
+            </h6>
+        </div>
+    </div>
+{% endblock content %}
