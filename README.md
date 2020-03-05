@@ -82,7 +82,7 @@ After setting up your `.env` file you can run the application. To work it correc
 4. `python manage.py loaddata initial_data.json` to populate database with the needed initial data.
 5. `python manage.py createsuperuser` to create an admin user for the website.
 6. `python manage.py runserver` to start the website.
-7. Setup [authentication](https://django-allauth.readthedocs.io/en/latest/installation.html "django allauth") through Google.
+7. Setup [authentication](https://django-allauth.readthedocs.io/en/latest/installation.html "Django allauth") through Google.
 
 
 All information posted by users from `user group` on the site will go through the moderation stage and can by `approved` or `declined` (default=`pending`). You can find the needed tools in the admin dashboard `your_site_url/admin`.
@@ -105,12 +105,12 @@ If you need to configure host settings. You need to open file `mini_blog/setting
 By default, it configured to allow all hosts:
 
 
-ALLOWED_HOSTS=[‘*’]
+ALLOWED_HOSTS=['*']
 
 
 This means that your application can be deployed on any host you like. To change it you need instead of ‘*’ write down your hostname, for example:
 
 
-ALLOWED_HOSTS=[‘my-blog.com’]
+ALLOWED_HOSTS=['my-blog.com']
 
 #### You can find this project on Heroku by following the link: [Mini blog](https://news-blog-site.herokuapp.com/ "Mini blog").
